@@ -6,7 +6,7 @@ class Player {
     this.y = this.gameScreen.offsetHeight / 2;
     this.speed = 3;
 
-    this.keys = {}; // To keep track of pressed keys
+    this.keys = {};
 
     this.element = document.createElement("img");
     this.element.src = imgSrc;
