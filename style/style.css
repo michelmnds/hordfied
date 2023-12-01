@@ -14,6 +14,8 @@
 
 }
 #start-screen h1{
+    margin-top: 200px;
+    
     font-size: 5rem;
     font-family: 'Permanent Marker', cursive;
 
@@ -31,8 +33,7 @@
     cursor: pointer;
 }
 #start-screen button {
-    top: 400px;
-    
+
     width: 170px;
     height: 50px;
 
@@ -46,8 +47,6 @@
 
     font-weight: bolder;
 
-    position: absolute;
-
     cursor: pointer;
 }
 #start-screen button:hover {
@@ -59,7 +58,7 @@
 }
 
 #game-screen{
-    display: flex;
+    display: none;
 
     align-items: center;
     justify-content: center;
@@ -108,4 +107,78 @@
     color: red;
 
     margin-left: 10px;
+}
+
+#end-screen{
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    height: 100vh;
+}
+#end-screen span {
+    font-size: 5rem;
+    font-family: 'Permanent Marker', cursive;
+
+    text-shadow: 4px 4px rgb(87, 0, 0);
+
+    color: red;
+
+    cursor: default;
+}
+
+.end-screen-btns {
+    display: flex;
+
+    width: 320px;
+    height: auto;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.end-screen-btns button {
+    margin-top: 30px;
+    
+    width: 150px;
+    height: 50px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: rgba(0, 0, 0, 0.26);
+    color: red;
+
+    outline: none;
+
+    font-weight: bolder;
+
+
+    cursor: pointer;
+}
+
+.death-screen{
+    display: none;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: auto;
+    height: 100vh;
+    
+}
+
+.death-screen span {
+    font-size: 5rem;
+    font-family: 'Permanent Marker', cursive;
+
+    text-shadow: 4px 4px rgb(87, 0, 0);
+
+    color: red;
+
+    cursor: default;
 }

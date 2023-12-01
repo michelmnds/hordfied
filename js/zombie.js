@@ -44,6 +44,10 @@ class Zombie {
     this.game.kills++;
 
     this.killCount.innerHTML = this.game.kills;
+
+    if (this.game.kills === this.game.maxKillsPerLevel * this.game.level) {
+      this.killCount.innerHTML = 0;
+    }
   }
 
   followPlayer() {
@@ -64,12 +68,22 @@ class Zombie {
     this.updatePosition();
   }
 
+  aimAt() {
+    const deltaX = this.player.x - this.x;
+    const deltaY = this.player.y - this.y;
+    const angle = Math.atan2(deltaY, deltaX);
+
+    const angleInDegrees = (angle * 180) / Math.PI;
+    this.element.style.transform = `rotate(${angleInDegrees - 270}deg)`;
+  }
+
   updatePosition() {
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
   }
 
   move() {
+    this.aimAt();
     this.followPlayer();
     this.handlePlayerDeath();
   }

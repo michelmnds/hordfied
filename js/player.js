@@ -2,8 +2,8 @@ class Player {
   constructor(gameScreen, imgSrc) {
     this.gameScreen = gameScreen;
 
-    this.x = this.gameScreen.offsetWidth / 2;
-    this.y = this.gameScreen.offsetHeight / 2;
+    this.x = 400;
+    this.y = 400;
     this.speed = 3;
 
     this.keys = {};

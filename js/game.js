@@ -3,6 +3,7 @@ class Game {
     this.startScreen = document.getElementById("start-screen");
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("end-screen");
+    this.gameDeathScreen = document.getElementById("death-screen");
     this.gameInfos = document.getElementById("infos");
     this.hord = document.getElementById("hord");
 
@@ -12,6 +13,7 @@ class Game {
     this.lives = 1;
     this.level = 1;
     this.kills = 0;
+    this.maxKillsPerLevel = 1;
 
     this.gameOver = false;
   }
@@ -22,6 +24,21 @@ class Game {
     this.gameInfos.style.display = "flex";
 
     this.gameLoop();
+  }
+
+  restart() {
+    this.level = 1;
+    this.kills = 0;
+
+    const zombiesOnScreen = document.querySelectorAll("#zombie");
+    zombiesOnScreen.forEach((zombie) => {
+      zombie.remove();
+    });
+
+    this.gameScreen.style.display = "block";
+    this.gameInfos.style.display = "flex";
+    this.player.x = 400;
+    this.player.y = 400;
   }
 
   gameLoop() {
@@ -40,7 +57,7 @@ class Game {
         );
       }
     }
-    if (this.kills === 1) {
+    if (this.kills === this.maxKillsPerLevel * this.level) {
       const zombiesOnScreen = document.querySelectorAll("#zombie");
       zombiesOnScreen.forEach((zombie) => {
         zombie.remove();
@@ -67,58 +84,65 @@ class Game {
         this.gameInfos.style.display = "flex";
         this.levelTitle.style.display = "none";
 
-        if (this.level === 2) {
-          setInterval(() => {
-            this.zombies.push(
-              new Zombie(
-                this.gameScreen,
-                "./img/zombie.png",
-                2,
-                game,
-                this.player
-              )
-            );
-          }, 2000);
-        } else if (this.level === 3) {
-          setInterval(() => {
-            this.zombies.push(
-              new Zombie(
-                this.gameScreen,
-                "./img/zombie.png",
-                3,
-                game,
-                this.player
-              )
-            );
-          }, 2000);
-        } else if (this.level === 4) {
-          setInterval(() => {
-            this.zombies.push(
-              new Zombie(
-                this.gameScreen,
-                "./img/zombie.png",
-                4,
-                game,
-                this.player
-              )
-            );
-          }, 2000);
-        } else if (this.level === 5) {
-          setInterval(() => {
-            this.zombies.push(
-              new Zombie(
-                this.gameScreen,
-                "./img/zombie.png",
-                4,
-                game,
-                this.player
-              )
-            );
-          }, 2000);
-        } else if (this.level >= 6) {
-          console.log("you won!");
-        }
-      }, 3000);
+        this.kill;
+      }, 2500);
+
+      if (this.level === 2) {
+        setInterval(() => {
+          this.zombies.push(
+            new Zombie(
+              this.gameScreen,
+              "./img/zombie.png",
+              2,
+              game,
+              this.player
+            )
+          );
+        }, 3000);
+      }
+      if (this.level === 3) {
+        setInterval(() => {
+          this.zombies.push(
+            new Zombie(
+              this.gameScreen,
+              "./img/zombie.png",
+              2,
+              game,
+              this.player
+            )
+          );
+        }, 3000);
+      }
+      if (this.level === 4) {
+        setInterval(() => {
+          this.zombies.push(
+            new Zombie(
+              this.gameScreen,
+              "./img/zombie.png",
+              2,
+              game,
+              this.player
+            )
+          );
+        }, 3000);
+      }
+      if (this.level === 5) {
+        setInterval(() => {
+          this.zombies.push(
+            new Zombie(
+              this.gameScreen,
+              "./img/zombie.png",
+              2,
+              game,
+              this.player
+            )
+          );
+        }, 3000);
+      }
+      if (this.level === 6) {
+        this.gameScreen.style.display = "none";
+        this.gameEndScreen.style.display = "flex";
+      }
     }
   }
   update() {
@@ -132,13 +156,14 @@ class Game {
         zombieRect.top < this.gameScreen.offsetHeight
       );
     });
-
     this.zombies.forEach((zombie) => {
       zombie.move();
     });
   }
 
   handleCollision() {
-    console.log("touch");
+    this.zombies = [];
+    this.gameDeathScreen.style.display = "flex";
+    this.gameScreen.style.display = "none";
   }
 }
