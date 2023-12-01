@@ -24,6 +24,20 @@ class Zombie {
     this.element.addEventListener("click", () => this.handleDeath());
   }
 
+  handlePlayerDeath() {
+    const playerRect = this.player.element.getBoundingClientRect();
+    const zombieRect = this.element.getBoundingClientRect();
+
+    if (
+      playerRect.right > zombieRect.left &&
+      playerRect.left < zombieRect.right &&
+      playerRect.bottom > zombieRect.top &&
+      playerRect.top < zombieRect.bottom
+    ) {
+      this.game.handleCollision();
+    }
+  }
+
   handleDeath() {
     this.element.remove();
 
@@ -54,7 +68,9 @@ class Zombie {
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
   }
+
   move() {
     this.followPlayer();
+    this.handlePlayerDeath();
   }
 }

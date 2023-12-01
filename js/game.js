@@ -40,7 +40,11 @@ class Game {
         );
       }
     }
-    if (this.kills === 2) {
+    if (this.kills === 1) {
+      const zombiesOnScreen = document.querySelectorAll("#zombie");
+      zombiesOnScreen.forEach((zombie) => {
+        zombie.remove();
+      });
       this.level += 1;
       this.hord.innerHTML = `Hord: ${this.level}`;
       this.kills = 0;
@@ -75,13 +79,50 @@ class Game {
               )
             );
           }, 2000);
+        } else if (this.level === 3) {
+          setInterval(() => {
+            this.zombies.push(
+              new Zombie(
+                this.gameScreen,
+                "./img/zombie.png",
+                3,
+                game,
+                this.player
+              )
+            );
+          }, 2000);
+        } else if (this.level === 4) {
+          setInterval(() => {
+            this.zombies.push(
+              new Zombie(
+                this.gameScreen,
+                "./img/zombie.png",
+                4,
+                game,
+                this.player
+              )
+            );
+          }, 2000);
+        } else if (this.level === 5) {
+          setInterval(() => {
+            this.zombies.push(
+              new Zombie(
+                this.gameScreen,
+                "./img/zombie.png",
+                4,
+                game,
+                this.player
+              )
+            );
+          }, 2000);
+        } else if (this.level >= 6) {
+          console.log("you won!");
         }
       }, 3000);
     }
   }
   update() {
     this.player.move();
-    console.log(this.zombies);
 
     this.zombies = this.zombies.filter((zombie) => {
       const zombieRect = zombie.element.getBoundingClientRect();
@@ -95,5 +136,9 @@ class Game {
     this.zombies.forEach((zombie) => {
       zombie.move();
     });
+  }
+
+  handleCollision() {
+    console.log("touch");
   }
 }
