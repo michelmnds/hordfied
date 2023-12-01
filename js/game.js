@@ -31,13 +31,12 @@ class Game {
     const animation = window.requestAnimationFrame(() => this.gameLoop());
 
     if (this.level === 1) {
-      if (animation % 100 === 0) {
-        this.zombies.push(new Zombie(this.gameScreen, "./img/zombie.png"));
+      if (animation % 300 === 0) {
+        this.zombies.push(new Zombie(this.gameScreen, "./img/zombie.png", 1));
       }
     }
   }
   update() {
-    console.log(this.zombies);
     this.player.move();
 
     this.zombies = this.zombies.filter((zombie) => {

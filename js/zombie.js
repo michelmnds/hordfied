@@ -1,9 +1,9 @@
 class Zombie {
-  constructor(gameScreen, imgSrc) {
+  constructor(gameScreen, imgSrc, speed) {
     this.gameScreen = gameScreen;
 
     this.x = Math.round(Math.random() * this.gameScreen.offsetWidth + 70);
-    this.speed = 3;
+    this.speed = speed;
     this.y = Math.round(Math.random() * -this.gameScreen.offsetHeight - 65);
 
     this.element = document.createElement("img");
@@ -13,8 +13,15 @@ class Zombie {
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
     this.element.style.transform = `rotate(${180}deg)`;
+    this.element.id = "zombie";
 
     this.gameScreen.appendChild(this.element);
+
+    this.element.addEventListener("click", () => this.handleDeath());
+  }
+
+  handleDeath() {
+    this.element.remove();
   }
 
   updatePosition() {
@@ -23,7 +30,7 @@ class Zombie {
   }
 
   move() {
-    this.y += 3;
+    this.y += this.speed;
 
     this.updatePosition();
   }
