@@ -133,7 +133,6 @@
 .end-screen-btns {
     display: flex;
 
-    width: 320px;
     height: auto;
 
     align-items: center;

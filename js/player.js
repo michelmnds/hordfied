@@ -9,12 +9,16 @@ class Player {
 
     this.keys = {};
 
-    this.isPumping = false;
-
     this.element = document.createElement("img");
-    this.element.src = imgSrc;
+
     this.element.style.position = "absolute";
     this.element.height = 70;
+
+    if (this.gun === "pistol") {
+      this.element.src = "./img/player.png";
+    } else if (this.gun === "lasergun") {
+      this.element.src = "./img/player-w-laser.png";
+    }
 
     this.gameScreen.appendChild(this.element);
 

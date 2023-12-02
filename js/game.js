@@ -15,7 +15,7 @@ class Game {
     this.lives = 1;
     this.level = 1;
     this.kills = 0;
-    this.maxKillsPerLevel = 1;
+    this.maxKillsPerLevel = 8;
 
     this.gameOver = false;
 
@@ -26,6 +26,33 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.gameInfos.style.display = "flex";
+
+    this.isLive = false;
+    this.hord.innerHTML = `Hord: ${this.level}`;
+
+    this.levelTitle = document.createElement("h2");
+    this.levelTitle.innerHTML = `Hord ${this.level} is coming!`;
+    this.levelTitle.style.display = "flex";
+    this.levelTitle.style.width = "auto";
+    this.levelTitle.style.height = `${100}vh`;
+    this.levelTitle.style.fontSize = `${3}rem`;
+    this.levelTitle.style.fontWeight = "bolder";
+    this.levelTitle.style.color = "red";
+    this.levelTitle.style.alignItems = "center";
+    this.levelTitle.style.justifyContent = "center";
+
+    this.gameScreen.append(this.levelTitle);
+
+    const newRound = new Audio("./sound/next-round.mp3");
+    setTimeout(() => {
+      newRound.play();
+    }, 1000);
+
+    setTimeout(() => {
+      this.gameInfos.style.display = "flex";
+      this.levelTitle.style.display = "none";
+      this.isLive = true;
+    }, 5000);
 
     this.gameLoop();
   }
