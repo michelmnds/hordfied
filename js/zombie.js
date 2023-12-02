@@ -46,7 +46,7 @@ class Zombie {
     if (this.life === 0) {
       this.element.remove();
 
-      this.game.kills++;
+      this.game.kills += 1;
 
       this.killCount.innerHTML = this.game.kills;
     }

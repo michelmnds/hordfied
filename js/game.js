@@ -30,9 +30,23 @@ class Game {
     this.gameLoop();
   }
 
+  handleZombieSounds() {
+    const randomNumber = Math.floor(Math.random() * 6);
+
+    if (randomNumber > 0) {
+      const zombieSound = new Audio(
+        `./sound/zombies/zombie-audio-${randomNumber}.mp3`
+      );
+      zombieSound.volume = 0.02;
+
+      zombieSound.play();
+    }
+  }
+
   restart() {
     this.level = 1;
     this.kills = 0;
+    this.isLive = true;
 
     const zombiesOnScreen = document.querySelectorAll("#zombie");
     zombiesOnScreen.forEach((zombie) => {
@@ -44,11 +58,11 @@ class Game {
     this.player.x = 400;
     this.player.y = 400;
   }
+
   gameLoop() {
     if (this.gameIsOver) {
       return;
     }
-
     const animation = window.requestAnimationFrame(() => this.gameLoop());
 
     this.update();
@@ -99,6 +113,7 @@ class Game {
   spawnZombies(animation) {
     if (this.level === 1 && this.isLive) {
       if (animation % 300 === 0) {
+        this.handleZombieSounds();
         this.zombies.push(
           new Zombie(
             this.gameScreen,
@@ -113,6 +128,8 @@ class Game {
       }
     } else if (this.level === 2 && this.isLive) {
       if (animation % 300 === 0) {
+        this.handleZombieSounds();
+
         this.zombies.push(
           new Zombie(
             this.gameScreen,
@@ -127,6 +144,8 @@ class Game {
       }
     } else if (this.level >= 3 && this.level < 5) {
       if (animation % 300 === 0 && this.isLive) {
+        this.handleZombieSounds();
+
         this.zombies.push(
           new Zombie(
             this.gameScreen,
@@ -190,5 +209,10 @@ class Game {
     this.zombies = [];
     this.gameDeathScreen.style.display = "flex";
     this.gameScreen.style.display = "none";
+    this.isLive = false;
+
+    const endGameAudio = new Audio("./sound/end-game.mp3");
+    endGameAudio.volume = 0.04;
+    endGameAudio.play();
   }
 }
