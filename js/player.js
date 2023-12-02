@@ -18,11 +18,21 @@ class Player {
     this.gameScreen.addEventListener("mousedown", (event) => {
       event.preventDefault();
     });
+    this.gameScreen.addEventListener(
+      "mousedown",
+      this.handleMouseDown.bind(this)
+    );
 
     window.addEventListener("keydown", this.handleKeyDown.bind(this));
     window.addEventListener("keyup", this.handleKeyUp.bind(this));
 
     window.addEventListener("mousemove", this.handleMouseMove.bind(this));
+  }
+
+  handleMouseDown(event) {
+    if (event.button === 0) {
+      this.shoot();
+    }
   }
 
   handleMouseMove(event) {
@@ -44,6 +54,11 @@ class Player {
 
     const angleInDegrees = (angle * 180) / Math.PI;
     this.element.style.transform = `rotate(${angleInDegrees + 90}deg)`;
+  }
+
+  shoot() {
+    const shotSound = new Audio("./sound/gun-sound.mp3");
+    shotSound.play();
   }
 
   move() {
