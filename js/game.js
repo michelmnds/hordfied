@@ -93,22 +93,54 @@ class Game {
     if (this.level === 1 && this.isLive) {
       if (animation % 300 === 0) {
         this.zombies.push(
-          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+          new Zombie(
+            this.gameScreen,
+            "./img/zombie.png",
+            2,
+            game,
+            this.player,
+            50,
+            50
+          )
         );
       }
     } else if (this.level === 2 && this.isLive) {
       if (animation % 300 === 0) {
         this.zombies.push(
-          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+          new Zombie(
+            this.gameScreen,
+            "./img/zombie.png",
+            2,
+            game,
+            this.player,
+            50,
+            100
+          )
         );
       }
     } else if (this.level >= 3 && this.level < 5) {
       if (animation % 300 === 0 && this.isLive) {
         this.zombies.push(
-          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+          new Zombie(
+            this.gameScreen,
+            "./img/zombie.png",
+            2,
+            game,
+            this.player,
+            50,
+            100
+          )
         );
         this.zombies.push(
-          new Zombie(this.gameScreen, "./img/zombie2.png", 3, game, this.player)
+          new Zombie(
+            this.gameScreen,
+            "./img/zombie2.png",
+            3,
+            game,
+            this.player,
+            50,
+            50
+          )
         );
       }
     } else if (this.level === 5 && this.isLive) {
@@ -116,10 +148,11 @@ class Game {
         new Zombie(
           this.gameScreen,
           "./img/boss1.png",
-          1,
+          2,
           game,
           this.player,
-          400
+          50,
+          1000
         )
       );
       this.kills = this.level - 1;

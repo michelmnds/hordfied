@@ -1,8 +1,10 @@
 class Zombie {
-  constructor(gameScreen, imgSrc, speed, game, player, height) {
+  constructor(gameScreen, imgSrc, speed, game, player, damage, life) {
     this.player = player;
     this.game = game;
+    this.damage = damage;
     this.gameScreen = gameScreen;
+    this.life = life;
 
     this.killCount = document.getElementById("kills");
 
@@ -13,7 +15,7 @@ class Zombie {
     this.element = document.createElement("img");
     this.element.src = imgSrc;
     this.element.style.position = "absolute";
-    this.element.height = 60 || height;
+    this.element.height = 60;
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
     this.element.style.transform = `rotate(${180}deg)`;
@@ -39,11 +41,15 @@ class Zombie {
   }
 
   handleDeath() {
-    this.element.remove();
+    this.life -= this.damage;
 
-    this.game.kills++;
+    if (this.life === 0) {
+      this.element.remove();
 
-    this.killCount.innerHTML = this.game.kills;
+      this.game.kills++;
+
+      this.killCount.innerHTML = this.game.kills;
+    }
 
     if (this.game.kills === this.game.maxKillsPerLevel * this.game.level) {
       this.killCount.innerHTML = 0;
