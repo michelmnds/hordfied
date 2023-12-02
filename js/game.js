@@ -18,6 +18,8 @@ class Game {
     this.maxKillsPerLevel = 1;
 
     this.gameOver = false;
+
+    this.isLive = true;
   }
 
   start() {
@@ -42,28 +44,25 @@ class Game {
     this.player.x = 400;
     this.player.y = 400;
   }
-
   gameLoop() {
     if (this.gameIsOver) {
       return;
     }
 
-    this.update();
-
     const animation = window.requestAnimationFrame(() => this.gameLoop());
 
-    if (this.level === 1) {
-      if (animation % 300 === 0) {
-        this.zombies.push(
-          new Zombie(this.gameScreen, "./img/zombie.png", 1, game, this.player)
-        );
-      }
-    }
+    this.update();
+    this.handleLevelUpdate();
+    this.spawnZombies(animation);
+  }
+
+  handleLevelUpdate() {
     if (this.kills === this.maxKillsPerLevel * this.level) {
       const zombiesOnScreen = document.querySelectorAll("#zombie");
       zombiesOnScreen.forEach((zombie) => {
         zombie.remove();
       });
+      this.isLive = false;
       this.level += 1;
       this.hord.innerHTML = `Hord: ${this.level}`;
       this.kills = 0;
@@ -85,84 +84,52 @@ class Game {
       setTimeout(() => {
         this.gameInfos.style.display = "flex";
         this.levelTitle.style.display = "none";
-
-        this.kill;
+        this.isLive = true;
       }, 2500);
-
-      if (this.level === 2) {
-        setInterval(() => {
-          console.log("zombie 2");
-          this.zombies.push(
-            new Zombie(
-              this.gameScreen,
-              "./img/zombie.png",
-              2,
-              game,
-              this.player
-            )
-          );
-        }, 3000);
-      } else if (this.level === 3) {
-        setInterval(() => {
-          console.log("zombie 3");
-          this.zombies.push(
-            new Zombie(
-              this.gameScreen,
-              "./img/zombie.png",
-              2,
-              game,
-              this.player
-            )
-          );
-          this.zombies.push(
-            new Zombie(
-              this.gameScreen,
-              "./img/zombie2.png",
-              3,
-              game,
-              this.player
-            )
-          );
-        }, 3000);
-      } else if (this.level === 4) {
-        setInterval(() => {
-          console.log("zombie 4");
-          this.zombies.push(
-            new Zombie(
-              this.gameScreen,
-              "./img/zombie.png",
-              2,
-              game,
-              this.player
-            )
-          );
-          this.zombies.push(
-            new Zombie(
-              this.gameScreen,
-              "./img/zombie2.png",
-              3,
-              game,
-              this.player
-            )
-          );
-        }, 3000);
-      } else if (this.level === 5) {
-        this.zombies.push(
-          new Zombie(
-            this.gameScreen,
-            "./img/boss1.png",
-            1,
-            game,
-            this.player,
-            400
-          )
-        );
-      } else if (this.level === 6) {
-        this.gameScreen.style.display = "none";
-        this.gameEndScreen.style.display = "flex";
-      }
     }
   }
+
+  spawnZombies(animation) {
+    if (this.level === 1 && this.isLive) {
+      if (animation % 300 === 0) {
+        this.zombies.push(
+          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+        );
+      }
+    } else if (this.level === 2 && this.isLive) {
+      if (animation % 300 === 0) {
+        this.zombies.push(
+          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+        );
+      }
+    } else if (this.level >= 3 && this.level < 5) {
+      if (animation % 300 === 0 && this.isLive) {
+        this.zombies.push(
+          new Zombie(this.gameScreen, "./img/zombie.png", 2, game, this.player)
+        );
+        this.zombies.push(
+          new Zombie(this.gameScreen, "./img/zombie2.png", 3, game, this.player)
+        );
+      }
+    } else if (this.level === 5 && this.isLive) {
+      this.zombies.push(
+        new Zombie(
+          this.gameScreen,
+          "./img/boss1.png",
+          1,
+          game,
+          this.player,
+          400
+        )
+      );
+      this.kills = this.level - 1;
+      this.isLive = false;
+    } else if (this.level === 6) {
+      this.gameScreen.style.display = "none";
+      this.gameEndScreen.style.display = "flex";
+    }
+  }
+
   update() {
     this.player.move();
 
