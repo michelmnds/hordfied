@@ -59,6 +59,8 @@ class Game {
   handleLevelUpdate() {
     if (this.kills === this.maxKillsPerLevel * this.level) {
       const zombiesOnScreen = document.querySelectorAll("#zombie");
+      const newRound = new Audio("./sound/next-round.mp3");
+
       zombiesOnScreen.forEach((zombie) => {
         zombie.remove();
       });
@@ -81,11 +83,16 @@ class Game {
       this.levelTitle.style.justifyContent = "center";
 
       this.gameScreen.append(this.levelTitle);
+
+      setTimeout(() => {
+        newRound.play();
+      }, 1000);
+
       setTimeout(() => {
         this.gameInfos.style.display = "flex";
         this.levelTitle.style.display = "none";
         this.isLive = true;
-      }, 2500);
+      }, 5000);
     }
   }
 
