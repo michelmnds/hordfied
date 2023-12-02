@@ -9,6 +9,8 @@ class Game {
 
     this.player = new Player(this.gameScreen, "./img/player.png");
     this.zombies = [];
+    this.specialZombies = [];
+    this.bossZombie = [];
 
     this.lives = 1;
     this.level = 1;
@@ -89,6 +91,7 @@ class Game {
 
       if (this.level === 2) {
         setInterval(() => {
+          console.log("zombie 2");
           this.zombies.push(
             new Zombie(
               this.gameScreen,
@@ -99,9 +102,9 @@ class Game {
             )
           );
         }, 3000);
-      }
-      if (this.level === 3) {
+      } else if (this.level === 3) {
         setInterval(() => {
+          console.log("zombie 3");
           this.zombies.push(
             new Zombie(
               this.gameScreen,
@@ -111,10 +114,19 @@ class Game {
               this.player
             )
           );
+          this.zombies.push(
+            new Zombie(
+              this.gameScreen,
+              "./img/zombie2.png",
+              3,
+              game,
+              this.player
+            )
+          );
         }, 3000);
-      }
-      if (this.level === 4) {
+      } else if (this.level === 4) {
         setInterval(() => {
+          console.log("zombie 4");
           this.zombies.push(
             new Zombie(
               this.gameScreen,
@@ -124,22 +136,28 @@ class Game {
               this.player
             )
           );
-        }, 3000);
-      }
-      if (this.level === 5) {
-        setInterval(() => {
           this.zombies.push(
             new Zombie(
               this.gameScreen,
-              "./img/zombie.png",
-              2,
+              "./img/zombie2.png",
+              3,
               game,
               this.player
             )
           );
         }, 3000);
-      }
-      if (this.level === 6) {
+      } else if (this.level === 5) {
+        this.zombies.push(
+          new Zombie(
+            this.gameScreen,
+            "./img/boss1.png",
+            1,
+            game,
+            this.player,
+            400
+          )
+        );
+      } else if (this.level === 6) {
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "flex";
       }

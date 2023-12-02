@@ -1,5 +1,5 @@
 class Zombie {
-  constructor(gameScreen, imgSrc, speed, game, player) {
+  constructor(gameScreen, imgSrc, speed, game, player, height) {
     this.player = player;
     this.game = game;
     this.gameScreen = gameScreen;
@@ -13,7 +13,7 @@ class Zombie {
     this.element = document.createElement("img");
     this.element.src = imgSrc;
     this.element.style.position = "absolute";
-    this.element.height = 60;
+    this.element.height = 60 || height;
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
     this.element.style.transform = `rotate(${180}deg)`;
@@ -29,10 +29,10 @@ class Zombie {
     const zombieRect = this.element.getBoundingClientRect();
 
     if (
-      playerRect.right > zombieRect.left &&
-      playerRect.left < zombieRect.right &&
-      playerRect.bottom > zombieRect.top &&
-      playerRect.top < zombieRect.bottom
+      playerRect.right > zombieRect.left - 10 &&
+      playerRect.left < zombieRect.right - 10 &&
+      playerRect.bottom > zombieRect.top - 10 &&
+      playerRect.top < zombieRect.bottom - 10
     ) {
       this.game.handleCollision();
     }
