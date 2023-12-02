@@ -7,7 +7,7 @@ class Game {
     this.gameInfos = document.getElementById("infos");
     this.hord = document.getElementById("hord");
 
-    this.player = new Player(this.gameScreen, "./img/player.png");
+    this.player = new Player(this.gameScreen, "./img/player.png", "pistol");
     this.zombies = [];
     this.specialZombies = [];
     this.bossZombie = [];
@@ -41,22 +41,6 @@ class Game {
 
       zombieSound.play();
     }
-  }
-
-  restart() {
-    this.level = 1;
-    this.kills = 0;
-    this.isLive = true;
-
-    const zombiesOnScreen = document.querySelectorAll("#zombie");
-    zombiesOnScreen.forEach((zombie) => {
-      zombie.remove();
-    });
-
-    this.gameScreen.style.display = "block";
-    this.gameInfos.style.display = "flex";
-    this.player.x = 400;
-    this.player.y = 400;
   }
 
   gameLoop() {
@@ -121,7 +105,6 @@ class Game {
             2,
             game,
             this.player,
-            50,
             50
           )
         );
@@ -137,7 +120,6 @@ class Game {
             2,
             game,
             this.player,
-            50,
             100
           )
         );
@@ -153,7 +135,6 @@ class Game {
             2,
             game,
             this.player,
-            50,
             100
           )
         );
@@ -164,7 +145,6 @@ class Game {
             3,
             game,
             this.player,
-            50,
             50
           )
         );
@@ -177,7 +157,6 @@ class Game {
           2,
           game,
           this.player,
-          50,
           1000
         )
       );

@@ -1,12 +1,15 @@
 class Player {
-  constructor(gameScreen, imgSrc) {
+  constructor(gameScreen, imgSrc, gun) {
     this.gameScreen = gameScreen;
 
+    this.gun = gun;
     this.x = 400;
     this.y = 400;
     this.speed = 3;
 
     this.keys = {};
+
+    this.isPumping = false;
 
     this.element = document.createElement("img");
     this.element.src = imgSrc;
@@ -30,7 +33,10 @@ class Player {
   }
 
   handleMouseDown(event) {
-    if (event.button === 0) {
+    if (event.button === 0 && this.gun === "pistol") {
+      this.shoot();
+    }
+    if (event.button === 0 && this.gun === "lasergun") {
       this.shoot();
     }
   }
@@ -57,8 +63,15 @@ class Player {
   }
 
   shoot() {
-    const shotSound = new Audio("./sound/gun-sound.mp3");
-    shotSound.play();
+    if (this.gun === "pistol") {
+      const shotSound = new Audio("./sound/gun-sound.mp3");
+      shotSound.play();
+    }
+    if (this.gun === "lasergun") {
+      const laseGunSound = new Audio("./sound/laser-gun.mp3");
+      laseGunSound.volume = 0.02;
+      laseGunSound.play();
+    }
   }
 
   move() {

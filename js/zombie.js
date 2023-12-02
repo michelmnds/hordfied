@@ -1,8 +1,8 @@
 class Zombie {
-  constructor(gameScreen, imgSrc, speed, game, player, damage, life) {
+  constructor(gameScreen, imgSrc, speed, game, player, life) {
     this.player = player;
     this.game = game;
-    this.damage = damage;
+
     this.gameScreen = gameScreen;
     this.life = life;
 
@@ -41,9 +41,14 @@ class Zombie {
   }
 
   handleDeath() {
-    this.life -= this.damage;
+    if (this.player.gun === "pistol") {
+      this.life -= 50;
+    }
+    if (this.player.gun === "lasergun") {
+      this.life -= 150;
+    }
 
-    if (this.life === 0) {
+    if (this.life <= 0) {
       this.element.remove();
 
       this.game.kills += 1;
