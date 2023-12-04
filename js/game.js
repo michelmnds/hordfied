@@ -226,7 +226,7 @@ class Game {
           1000
         )
       );
-      this.kills = this.level - 1;
+      this.kills = this.level * 8 - 1;
       this.isLive = false;
     } else if (this.level === 6) {
       this.gameScreen.style.display = "none";
