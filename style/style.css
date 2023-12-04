@@ -179,23 +179,26 @@
 }
 
 .end-screen-btns button {
-    margin-top: 30px;
-    
-    width: 150px;
-    height: 50px;
+    width: 340px;
+    height: 25px;
 
     border: none;
-    border-radius: 8px;
 
-    background-color: rgba(0, 0, 0, 0.26);
+    margin-top: 30px;
+
+    background: linear-gradient(to right, transparent 0%, #000000 50%, transparent 100%);
+
     color: red;
 
     outline: none;
 
     font-weight: bolder;
 
-
     cursor: pointer;
+}
+.end-screen-btns button:hover {
+    background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
+
 }
 
 .death-screen{
