@@ -154,6 +154,7 @@ class Game {
       setTimeout(() => {
         this.gameInfos.style.display = "flex";
         this.levelTitle.style.display = "none";
+        gunContainer.style.display = "flex";
         this.isLive = true;
       }, 5000);
     }
@@ -161,7 +162,7 @@ class Game {
 
   spawnZombies(animation) {
     if (this.level === 1 && this.isLive) {
-      if (animation % 300 === 0) {
+      if (animation % 250 === 0) {
         this.handleZombieSounds();
         this.zombies.push(
           new Zombie(
@@ -175,7 +176,7 @@ class Game {
         );
       }
     } else if (this.level === 2 && this.isLive) {
-      if (animation % 300 === 0) {
+      if (animation % 250 === 0) {
         this.handleZombieSounds();
 
         this.zombies.push(
@@ -190,7 +191,7 @@ class Game {
         );
       }
     } else if (this.level >= 3 && this.level < 5) {
-      if (animation % 300 === 0 && this.isLive) {
+      if (animation % 250 === 0 && this.isLive) {
         this.handleZombieSounds();
 
         this.zombies.push(

@@ -34,7 +34,6 @@
     cursor: pointer;
 }
 #start-screen button {
-
     width: 340px;
     height: 25px;
 
@@ -51,6 +50,48 @@
     cursor: pointer;
 }
 #start-screen button:hover {
+    background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
+
+}
+
+#htp-screen {
+    display: none;
+    flex-direction: column;
+
+    gap: 30px;
+
+    width: auto;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#htp-img{
+    width: 50%;
+
+    border: 3px solid red;
+    border-radius: 10px;
+
+    background-color: rgba(0, 0, 0, 0.637);
+}
+#htp-screen button {
+    width: 340px;
+    height: 25px;
+
+    border: none;
+
+    background: linear-gradient(to right, transparent 0%, #000000 50%, transparent 100%);
+
+    color: red;
+
+    outline: none;
+
+    font-weight: bolder;
+
+    cursor: pointer;
+}
+#htp-screen button:hover {
     background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
 
 }
