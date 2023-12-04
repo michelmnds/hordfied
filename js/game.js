@@ -1,13 +1,17 @@
 class Game {
-  constructor() {
+  constructor(gunName, gunAmmo, gunMaxAmmo) {
     this.startScreen = document.getElementById("start-screen");
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("end-screen");
     this.gameDeathScreen = document.getElementById("death-screen");
     this.gameInfos = document.getElementById("infos");
     this.hord = document.getElementById("hord");
-
-    this.player = new Player(this.gameScreen, "./img/player.png", "pistol");
+    this.gun = new Gun("pistol", 8, 8);
+    this.player = new Player(
+      this.gameScreen,
+      `./img/player-${this.gun.name}.png`,
+      this.gun
+    );
     this.zombies = [];
     this.specialZombies = [];
     this.bossZombie = [];
@@ -26,6 +30,19 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.gameInfos.style.display = "flex";
+
+    const gunsInfo = document.getElementById("gunsInfos");
+
+    const gun = document.createElement("img");
+    gun.src = `./img/${this.gun.name}.png`;
+    gun.classList = "gun";
+
+    const ammo = document.createElement("span");
+    ammo.innerText = this.gun.ammo;
+    ammo.id = "ammo";
+
+    gunsInfo.append(gun);
+    gunsInfo.append(ammo);
 
     this.isLive = false;
     this.hord.innerHTML = `Hord: ${this.level}`;
@@ -74,8 +91,10 @@ class Game {
     if (this.gameIsOver) {
       return;
     }
+
     const animation = window.requestAnimationFrame(() => this.gameLoop());
 
+    this.gun.reload();
     this.update();
     this.handleLevelUpdate();
     this.spawnZombies(animation);
@@ -124,17 +143,17 @@ class Game {
   spawnZombies(animation) {
     if (this.level === 1 && this.isLive) {
       if (animation % 300 === 0) {
-        this.handleZombieSounds();
-        this.zombies.push(
-          new Zombie(
-            this.gameScreen,
-            "./img/zombie.png",
-            2,
-            game,
-            this.player,
-            50
-          )
-        );
+        // this.handleZombieSounds();
+        // this.zombies.push(
+        //   new Zombie(
+        //     this.gameScreen,
+        //     "./img/zombie.png",
+        //     2,
+        //     game,
+        //     this.player,
+        //     50
+        //   )
+        // );
       }
     } else if (this.level === 2 && this.isLive) {
       if (animation % 300 === 0) {
@@ -212,13 +231,12 @@ class Game {
   }
 
   handleCollision() {
-    this.zombies = [];
-    this.gameDeathScreen.style.display = "flex";
-    this.gameScreen.style.display = "none";
-    this.isLive = false;
-
-    const endGameAudio = new Audio("./sound/end-game.mp3");
-    endGameAudio.volume = 0.04;
-    endGameAudio.play();
+    // this.zombies = [];
+    // this.gameDeathScreen.style.display = "flex";
+    // this.gameScreen.style.display = "none";
+    // this.isLive = false;
+    // const endGameAudio = new Audio("./sound/end-game.mp3");
+    // endGameAudio.volume = 0.04;
+    // endGameAudio.play();
   }
 }

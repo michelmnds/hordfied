@@ -181,3 +181,21 @@
 
     cursor: default;
 }
+
+.gunsInfos{
+    position: absolute;
+    
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    top: 600px;
+    right: 0px;
+
+    margin-right: 30px;
+
+    gap: 10px;
+}
+.gun {
+    width: 40%;
+}

@@ -12,13 +12,8 @@ class Player {
     this.element = document.createElement("img");
 
     this.element.style.position = "absolute";
+    this.element.src = imgSrc;
     this.element.height = 70;
-
-    if (this.gun === "pistol") {
-      this.element.src = "./img/player.png";
-    } else if (this.gun === "lasergun") {
-      this.element.src = "./img/player-w-laser.png";
-    }
 
     this.gameScreen.appendChild(this.element);
 
@@ -37,11 +32,14 @@ class Player {
   }
 
   handleMouseDown(event) {
-    if (event.button === 0 && this.gun === "pistol") {
-      this.shoot();
-    }
-    if (event.button === 0 && this.gun === "lasergun") {
-      this.shoot();
+    const ammo = document.getElementById("ammo");
+
+    if (event.button === 0) {
+      if (this.gun.isReloading === false) {
+        this.shoot();
+        this.gun.ammo--;
+        ammo.innerHTML = this.gun.ammo;
+      }
     }
   }
 
@@ -67,15 +65,10 @@ class Player {
   }
 
   shoot() {
-    if (this.gun === "pistol") {
-      const shotSound = new Audio("./sound/gun-sound.mp3");
-      shotSound.play();
-    }
-    if (this.gun === "lasergun") {
-      const laseGunSound = new Audio("./sound/laser-gun.mp3");
-      laseGunSound.volume = 0.02;
-      laseGunSound.play();
-    }
+    const shotSound = new Audio(`./sound/${this.gun.name}-sound.mp3`);
+    shotSound.volume = 0.02;
+
+    shotSound.play();
   }
 
   move() {
