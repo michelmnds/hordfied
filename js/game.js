@@ -33,9 +33,28 @@ class Game {
   }
 
   start() {
+    const gunContainer = document.getElementById("gun-container");
+    gunContainer.style.display = "none";
+
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
-    this.gameInfos.style.display = "flex";
+
+    this.isLive = false;
+    this.hord.innerHTML = `Hord: ${this.level}`;
+
+    this.levelTitle = document.createElement("h2");
+    this.levelTitle.innerHTML = `Hord ${this.level} is coming!`;
+    this.levelTitle.style.display = "flex";
+
+    this.levelTitle.style.width = "auto";
+    this.levelTitle.style.height = `${100}vh`;
+    this.levelTitle.style.fontSize = `${3}rem`;
+    this.levelTitle.style.fontWeight = "bolder";
+    this.levelTitle.style.color = "red";
+    this.levelTitle.style.alignItems = "center";
+    this.levelTitle.style.justifyContent = "center";
+
+    this.gameScreen.append(this.levelTitle);
 
     const ammoContainer = document.getElementById("ammo-container");
 
@@ -55,22 +74,6 @@ class Game {
       ammoContainer.append(ammo);
     }
 
-    this.isLive = false;
-    this.hord.innerHTML = `Hord: ${this.level}`;
-
-    this.levelTitle = document.createElement("h2");
-    this.levelTitle.innerHTML = `Hord ${this.level} is coming!`;
-    this.levelTitle.style.display = "flex";
-    this.levelTitle.style.width = "auto";
-    this.levelTitle.style.height = `${100}vh`;
-    this.levelTitle.style.fontSize = `${3}rem`;
-    this.levelTitle.style.fontWeight = "bolder";
-    this.levelTitle.style.color = "red";
-    this.levelTitle.style.alignItems = "center";
-    this.levelTitle.style.justifyContent = "center";
-
-    this.gameScreen.append(this.levelTitle);
-
     const newRound = new Audio("./sound/next-round.mp3");
     setTimeout(() => {
       newRound.play();
@@ -79,6 +82,8 @@ class Game {
     setTimeout(() => {
       this.gameInfos.style.display = "flex";
       this.levelTitle.style.display = "none";
+      gunContainer.style.display = "flex";
+
       this.isLive = true;
     }, 5000);
 
@@ -113,6 +118,9 @@ class Game {
 
   handleLevelUpdate() {
     if (this.kills === this.maxKillsPerLevel * this.level) {
+      const gunContainer = document.getElementById("gun-container");
+      gunContainer.style.display = "none";
+
       const zombiesOnScreen = document.querySelectorAll("#zombie");
       const newRound = new Audio("./sound/next-round.mp3");
 

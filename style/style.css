@@ -189,11 +189,11 @@
 
     height: 91vh;
     width: auto;
+    
 }
 
 .gunsInfos{
     position: relative;
-
 
     display: flex;
     flex-direction: column;
