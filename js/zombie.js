@@ -41,7 +41,9 @@ class Zombie {
   }
 
   handleDeath() {
-    this.life -= this.player.gun.damage;
+    if (!this.player.gun.isReloading) {
+      this.life -= this.player.gun.damage;
+    }
 
     if (this.life <= 0) {
       this.element.remove();
