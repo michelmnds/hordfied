@@ -27,6 +27,7 @@
 }
 #start-screen span{
     cursor: default;
+    font-weight: bolder;
 
 }
 #start-screen h1 span{
@@ -34,13 +35,13 @@
 }
 #start-screen button {
 
-    width: 170px;
-    height: 50px;
+    width: 340px;
+    height: 25px;
 
     border: none;
-    border-radius: 8px;
 
-    background-color: rgba(0, 0, 0, 0.26);
+    background: linear-gradient(to right, transparent 0%, #000000 50%, transparent 100%);
+
     color: red;
 
     outline: none;
@@ -50,11 +51,8 @@
     cursor: pointer;
 }
 #start-screen button:hover {
-    background-color: rgb(83, 0, 0);
+    background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
 
-    transition: 500ms;
-
-   
 }
 
 #game-screen{
