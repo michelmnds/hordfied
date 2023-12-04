@@ -32,13 +32,13 @@ class Player {
   }
 
   handleMouseDown(event) {
-    const ammo = document.getElementById("ammo");
-
     if (event.button === 0) {
       if (this.gun.isReloading === false) {
         this.shoot();
         this.gun.ammo--;
-        ammo.innerHTML = this.gun.ammo;
+
+        const ammo = document.getElementById(`ammo-${this.gun.ammo}`);
+        ammo.style.filter = `brightness(${0}%)`;
       }
     }
   }

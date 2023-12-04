@@ -41,12 +41,7 @@ class Zombie {
   }
 
   handleDeath() {
-    if (this.player.gun === "pistol") {
-      this.life -= 50;
-    }
-    if (this.player.gun === "lasergun") {
-      this.life -= 150;
-    }
+    this.life -= this.player.gun.damage;
 
     if (this.life <= 0) {
       this.element.remove();

@@ -186,6 +186,7 @@
     position: absolute;
     
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: center;
 
@@ -198,4 +199,9 @@
 }
 .gun {
     width: 40%;
+}
+#ammo {
+    width: 15px;
+
+    filter: brightness(120%);   
 }

@@ -1,15 +1,17 @@
 class Gun {
-  constructor(name, ammo, maxAmmo) {
+  constructor(name, ammo, maxAmmo, damage) {
     this.name = name;
 
     this.ammo = ammo;
     this.maxAmmo = maxAmmo;
 
+    this.damage = damage;
+
     this.isReloading = false;
+    this.counter = this.ammo;
   }
 
   reload() {
-    const ammo = document.getElementById("ammo");
     if (this.ammo === 0) {
       this.isReloading = true;
       this.ammo = this.maxAmmo;
@@ -18,8 +20,12 @@ class Gun {
       reload.play();
 
       reload.addEventListener("ended", () => {
-        ammo.innerHTML = this.ammo;
         this.isReloading = false;
+
+        for (let i = 0; i < this.maxAmmo; i++) {
+          const ammo = document.getElementById(`ammo-${i}`);
+          ammo.style.filter = `brightness(${120}%)`;
+        }
       });
     }
   }
