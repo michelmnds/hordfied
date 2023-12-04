@@ -37,7 +37,9 @@ class Player {
         this.shoot();
         this.gun.ammo--;
 
-        const ammo = document.getElementById(`ammo-${this.gun.ammo}`);
+        const ammo = document.getElementById(
+          `ammo-${this.gun.maxAmmo - this.gun.ammo - 1}`
+        );
         ammo.style.filter = `brightness(${0}%)`;
       }
     }

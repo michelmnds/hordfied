@@ -182,26 +182,58 @@
     cursor: default;
 }
 
+.gunContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    height: 91vh;
+    width: auto;
+}
+
 .gunsInfos{
-    position: absolute;
-    
+    position: relative;
+
+
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 
-    top: 600px;
-    right: 0px;
+    height: auto;
+    width: 200px;
+
+    border: 3px solid red;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.637);
 
     margin-right: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
 
     gap: 10px;
 }
 .gun {
-    width: 40%;
+    width: 60%
 }
-#ammo {
-    width: 15px;
+#gun-name {
+    font-family: 'Permanent Marker', cursive;
+    color: red;
 
-    filter: brightness(120%);   
+    font-size: 32px;
+
+    position: absolute;
+
+    top: -40px;
+
+    text-shadow: 4px 4px rgba(0, 0, 0, 0.637);
+
+}
+
+#ammo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
 }

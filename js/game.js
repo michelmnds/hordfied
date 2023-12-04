@@ -24,6 +24,12 @@ class Game {
     this.gameOver = false;
 
     this.isLive = true;
+
+    window.addEventListener("keydown", (event) => {
+      if (event.code === "KeyR") {
+        this.gun.reloadManually();
+      }
+    });
   }
 
   start() {
@@ -36,6 +42,9 @@ class Game {
     const gun = document.getElementById("gun");
     gun.src = `./img/${this.gun.name}.png`;
     gun.classList = "gun";
+
+    const gunName = document.getElementById("gun-name");
+    gunName.innerHTML = this.gun.name.toUpperCase();
 
     for (let i = 0; i < this.gun.maxAmmo; i++) {
       const ammo = document.createElement("img");
