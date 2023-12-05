@@ -15,7 +15,7 @@ class Gun {
     if (this.ammo === 0) {
       this.isReloading = true;
       this.ammo = this.maxAmmo;
-      const reload = new Audio(`./sound/${this.name}-reload.mp3`);
+      const reload = new Audio(`./sound/pistol-reload.mp3`);
       reload.volume = 0.04;
       reload.play();
 
@@ -34,7 +34,7 @@ class Gun {
     if (this.ammo < this.maxAmmo) {
       this.isReloading = true;
       this.ammo = this.maxAmmo;
-      const reload = new Audio(`./sound/${this.name}-reload.mp3`);
+      const reload = new Audio(`./sound/pistol-reload.mp3`);
       reload.volume = 0.04;
       reload.play();
 

@@ -1,7 +1,7 @@
 
 #start-screen{
     width: auto;
-    height: 70vh;
+    height: 90vh;
 
     display: flex;
     flex-direction: column;
@@ -94,6 +94,145 @@
 #htp-screen button:hover {
     background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
 
+}
+
+#select-screen {
+    width: auto;
+    height: 90vh;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    gap: 30px;
+}
+#char-container{
+    width: 620px;
+    height: 600px;
+
+    border: 3px solid red;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.637);
+}
+#text-container{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+}
+#select-screen #text-container h1{
+    font-size: 3rem;
+    font-family: 'Permanent Marker', cursive;
+
+    text-shadow: 4px 4px rgb(87, 0, 0);
+
+    color: red;
+
+    cursor: default;
+}
+#select-screen #text-container h2{
+    font-size: 3rem;
+    font-family: 'Permanent Marker', cursive;
+
+    text-shadow: 4px 4px rgb(87, 0, 0);
+
+    color: red;
+
+    cursor: default;
+}
+#select-screen button {
+    margin-top: 20px;
+    
+    width: 340px;
+    height: 25px;
+
+    border: none;
+
+    background: linear-gradient(to right, transparent 0%, #000000 50%, transparent 100%);
+
+    color: red;
+
+    outline: none;
+
+    font-weight: bolder;
+
+    cursor: pointer;
+}
+#select-screen button:hover {
+    background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
+
+}
+
+#char-container{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+#char-container span {
+    font-size: 2rem;
+
+    font-weight: bolder;
+
+    color: red;
+}
+#char-img{
+    width: 400px;
+}
+#char-infos{
+    border: 3px solid red;
+
+    width: 500px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 50px;
+    
+}
+#char-gun{
+    margin-left: 30px;
+    
+    width: 30%;
+}
+#gun-infos{
+    margin-right: 30px;
+
+    gap: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+} 
+#gun-infos span {
+    font-size: 1.5rem;
+}
+#arrow-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px;
+
+    width: 530px;
+
+    position: absolute;
+    top: 250px
+}
+#arrow-left, #arrow-right{
+    width: 35px;
+
+    cursor: pointer;
+}
+#arrow-right{
+    rotate: 180deg;
 }
 
 #game-screen{
@@ -278,4 +417,54 @@
     justify-content: center;
 
     gap: 3px;
+}
+
+#easteregg-container{
+    position: absolute;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+    flex-direction: column;
+
+    gap: 20px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.767);
+}
+#easteregg-input{
+    width: 300px;
+    height: 25px;
+
+    background-color: black;
+
+    border: 2px solid red;
+    border-radius: 4px;
+
+    color: red;
+
+    outline: none;
+}
+#easteregg-button{
+    width: 340px;
+    height: 25px;
+
+    border: none;
+
+    background: linear-gradient(to right, transparent 0%, #000000 50%, transparent 100%);
+
+    color: red;
+
+    outline: none;
+
+    font-weight: bolder;
+
+    cursor: pointer;
+}
+#easteregg-button:hover {
+    background: linear-gradient(to right, transparent 0%, #ffffff 50%, transparent 100%);
+
 }

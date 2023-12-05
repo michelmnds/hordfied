@@ -1,5 +1,6 @@
 class Player {
-  constructor(gameScreen, imgSrc, gun) {
+  constructor(name, gameScreen, gun) {
+    this.name = name;
     this.gameScreen = gameScreen;
 
     this.gun = gun;
@@ -12,7 +13,9 @@ class Player {
     this.element = document.createElement("img");
 
     this.element.style.position = "absolute";
-    this.element.src = imgSrc;
+
+    this.element.src = `./img/player-${this.gun.name}.png`;
+
     this.element.height = 70;
 
     this.gameScreen.appendChild(this.element);
@@ -67,7 +70,7 @@ class Player {
   }
 
   shoot() {
-    const shotSound = new Audio(`./sound/${this.gun.name}-sound.mp3`);
+    const shotSound = new Audio(`./sound/pistol-sound.mp3`);
     shotSound.volume = 0.02;
 
     shotSound.play();

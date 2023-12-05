@@ -1,17 +1,14 @@
 class Game {
-  constructor(gunName, gunAmmo, gunMaxAmmo, gunDamage) {
+  constructor(plyaerName, gunName, gunAmmo, gunMaxAmmo, gunDamage) {
     this.startScreen = document.getElementById("start-screen");
+    this.selectScreen = document.getElementById("select-screen");
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("end-screen");
     this.gameDeathScreen = document.getElementById("death-screen");
     this.gameInfos = document.getElementById("infos");
     this.hord = document.getElementById("hord");
-    this.gun = new Gun("pistol", 8, 8, 50);
-    this.player = new Player(
-      this.gameScreen,
-      `./img/player-${this.gun.name}.png`,
-      this.gun
-    );
+    this.gun = new Gun(gunName, gunAmmo, gunMaxAmmo, gunDamage);
+    this.player = new Player(plyaerName, this.gameScreen, this.gun);
     this.zombies = [];
     this.specialZombies = [];
     this.bossZombie = [];
@@ -36,7 +33,7 @@ class Game {
     const gunContainer = document.getElementById("gun-container");
     gunContainer.style.display = "none";
 
-    this.startScreen.style.display = "none";
+    this.selectScreen.style.display = "none";
     this.gameScreen.style.display = "block";
 
     this.isLive = false;
@@ -67,7 +64,7 @@ class Game {
 
     for (let i = 0; i < this.gun.maxAmmo; i++) {
       const ammo = document.createElement("img");
-      ammo.src = `./img/${this.gun.name}-bullet.png`;
+      ammo.src = `./img/pistol-bullet.png`;
       ammo.id = `ammo-${i}`;
       ammo.style.width = `${15}px`;
       ammo.style.filter = `brightness(${120}%)`;
