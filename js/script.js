@@ -1,6 +1,7 @@
 const players = [
   {
     name: "mike",
+    img: "mike",
     gun: "pistol",
     gunImg: "./img/pistol.png",
     gunStats: {
@@ -11,6 +12,7 @@ const players = [
   },
   {
     name: "eric",
+    img: "eric",
     gun: "portugal",
     gunImg: "./img/portugal.png",
     gunStats: {
@@ -21,6 +23,7 @@ const players = [
   },
   {
     name: "joshua",
+    img: "joshua",
     gun: "surfboard",
     gunImg: "./img/surfboard.png",
     gunStats: {
@@ -31,6 +34,7 @@ const players = [
   },
   {
     name: "mat",
+    img: "mat",
     gun: "baguete",
     gunImg: "./img/baguete.png",
     gunStats: {
@@ -44,12 +48,46 @@ const players = [
 const unlockedPlayers = [
   {
     name: "mike",
+    img: "mike",
     gun: "pistol",
     gunImg: "./img/pistol.png",
     gunStats: {
       name: gun,
       damage: 50,
       ammo: 8,
+    },
+  },
+  {
+    name: "?",
+    img: "eric-black",
+    gun: "?",
+    gunImg: "./img/portugal-black.png",
+    gunStats: {
+      name: gun,
+      damage: "?",
+      ammo: "?",
+    },
+  },
+  {
+    name: "?",
+    img: "joshua-black",
+    gun: "?",
+    gunImg: "./img/surfboard-black.png",
+    gunStats: {
+      name: gun,
+      damage: "?",
+      ammo: "?",
+    },
+  },
+  {
+    name: "?",
+    img: "mat-black",
+    gun: "?",
+    gunImg: "./img/baguete-black.png",
+    gunStats: {
+      name: gun,
+      damage: "?",
+      ammo: "?",
     },
   },
 ];
@@ -93,11 +131,17 @@ eastereggButton.addEventListener("click", (e) => {
   value.toLowerCase();
 
   if (value === "baguete") {
-    unlockedPlayers.push(players[3]);
+    unlockedPlayers[3] = players[3];
+    clearRenderedPlayer();
+    renderPlayer(unlockedPlayers[count]);
   } else if (value === "ragnar") {
-    unlockedPlayers.push(players[2]);
+    unlockedPlayers[2] = players[2];
+    clearRenderedPlayer();
+    renderPlayer(unlockedPlayers[count]);
   } else if (value === "portugal") {
-    unlockedPlayers.push(players[1]);
+    unlockedPlayers[1] = players[1];
+    clearRenderedPlayer();
+    renderPlayer(unlockedPlayers[count]);
   }
   easterEggContainer.style.display = "none";
   selectScreen.style.zIndex = 0;
@@ -114,7 +158,7 @@ const renderPlayer = (player) => {
 
   const img = document.createElement("img");
   img.id = "char-img";
-  img.src = `./img/${player.name}.png`;
+  img.src = `./img/${player.img}.png`;
 
   const charInfos = document.createElement("div");
   charInfos.id = "char-infos";
