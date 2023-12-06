@@ -14,7 +14,7 @@ class Game {
     this.bossZombie = [];
 
     this.lives = 1;
-    this.level = 1;
+    this.level = 5;
     this.kills = 0;
     this.maxKillsPerLevel = 8;
 
@@ -99,6 +99,17 @@ class Game {
       zombieSound.play();
     }
   }
+  handleBossSounds() {
+    const randomNumber = Math.floor(Math.random() * 3);
+
+    if (randomNumber > 0) {
+      const bossSound = new Audio(
+        `./sound/zombies/boss-audio-${randomNumber}.mp3`
+      );
+      bossSound.volume = 0.02;
+      bossSound.play();
+    }
+  }
 
   gameLoop() {
     if (this.gameIsOver) {
@@ -120,6 +131,9 @@ class Game {
 
       const zombiesOnScreen = document.querySelectorAll("#zombie");
       const newRound = new Audio("./sound/next-round.mp3");
+      const bossRound = new Audio("./sound/zombies/zombie-boss-round.mp3");
+      bossRound.volume = 0.04;
+      const winSound = new Audio("./sound/win-sound.mp3");
 
       zombiesOnScreen.forEach((zombie) => {
         zombie.remove();
@@ -132,7 +146,12 @@ class Game {
       this.zombies = [];
 
       this.levelTitle = document.createElement("h2");
-      this.levelTitle.innerHTML = `Hord ${this.level} is coming!`;
+      if (this.level < 5) {
+        this.levelTitle.innerHTML = `Hord ${this.level} is coming!`;
+      } else {
+        this.levelTitle.innerHTML = `Something is coming!`;
+      }
+
       this.levelTitle.style.display = "flex";
       this.levelTitle.style.width = "auto";
       this.levelTitle.style.height = `${100}vh`;
@@ -144,10 +163,17 @@ class Game {
 
       this.gameScreen.append(this.levelTitle);
 
-      setTimeout(() => {
-        newRound.play();
-      }, 1000);
-
+      if (this.level < 5) {
+        setTimeout(() => {
+          newRound.play();
+        }, 1000);
+      } else if (this.level === 5) {
+        setTimeout(() => {
+          bossRound.play();
+        }, 1000);
+      } else {
+        winSound.play();
+      }
       setTimeout(() => {
         this.gameInfos.style.display = "flex";
         this.levelTitle.style.display = "none";
@@ -173,7 +199,7 @@ class Game {
         );
       }
     } else if (this.level === 2 && this.isLive) {
-      if (animation % 250 === 0) {
+      if (animation % 250 === 0 && this.isLive) {
         this.handleZombieSounds();
 
         this.zombies.push(
@@ -212,20 +238,26 @@ class Game {
           )
         );
       }
-    } else if (this.level === 5 && this.isLive) {
-      this.zombies.push(
-        new Zombie(
-          this.gameScreen,
-          "./img/boss1.png",
-          2,
-          game,
-          this.player,
-          1000
-        )
-      );
-      this.kills = this.level * 8 - 1;
+    } else if (this.level === 5) {
+      if (animation % 250 === 0) {
+        this.handleBossSounds();
+      }
+      if (this.isLive) {
+        this.zombies.push(
+          new Zombie(
+            this.gameScreen,
+            "./img/boss1.png",
+            2.6,
+            game,
+            this.player,
+            1500
+          )
+        );
+      }
+      this.kills = this.level * this.maxKillsPerLevel - 1;
       this.isLive = false;
     } else if (this.level === 6) {
+      this.isLive = false;
       this.gameScreen.style.display = "none";
       this.gameEndScreen.style.display = "flex";
     }
