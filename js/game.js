@@ -14,7 +14,7 @@ class Game {
     this.bossZombie = [];
 
     this.lives = 1;
-    this.level = 5;
+    this.level = 1;
     this.kills = 0;
     this.maxKillsPerLevel = 8;
 
@@ -250,7 +250,7 @@ class Game {
             2.6,
             game,
             this.player,
-            1
+            1500
           )
         );
       }
