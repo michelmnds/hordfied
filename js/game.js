@@ -250,7 +250,7 @@ class Game {
             2.6,
             game,
             this.player,
-            1500
+            1
           )
         );
       }

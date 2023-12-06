@@ -95,7 +95,6 @@ const unlockedPlayers = [
 const startBtn = document.getElementById("start-btn");
 const htpBtn = document.getElementById("htp-btn");
 
-const mainMenuBtn = document.getElementById("menu-btn");
 const deathMenuBtn = document.getElementById("death-menu-btn");
 
 const startScreen = document.getElementById("start-screen");
@@ -235,10 +234,6 @@ playBtn.addEventListener("click", () => {
 startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
   selectScreen.style.display = "flex";
-});
-
-mainMenuBtn.addEventListener("click", () => {
-  location.reload();
 });
 
 deathMenuBtn.addEventListener("click", () => {
