@@ -9,9 +9,6 @@ Welcome to Hordified! A simple yet challenging browser-based zombie survival gam
 - [Gameplay](#gameplay)
 - [Getting Started](#getting-started)
 - [Controls](#controls)
-- [Special Characters](#special-characters)
-- [Contribution](#contribution)
-- [License](#license)
 
 ## Introduction
 
@@ -29,7 +26,7 @@ Survive 5 consecutive hordes to complete the game. Face increasingly difficult w
 
 ## Getting Started
 
-To play Hordified, visit [https://michelmnds.github.io/hordfied/] using a compatible web browser. No downloads required.
+To play Hordified, visit https://michelmnds.github.io/hordfied/ using a compatible web browser. No downloads required.
 
 ## Controls
 
